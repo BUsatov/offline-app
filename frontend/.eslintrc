@@ -1,0 +1,57 @@
+{
+  "extends": ["airbnb/base", "prettier", "plugin:react/recommended"],
+  "plugins": ["prettier", "react", "react-hooks"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "amd": true,
+    "jasmine": true,
+    "protractor": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "curly": ["error", "all"],
+    "func-names": 0,
+    "radix": 0,
+    "no-param-reassign": 0,
+    "prefer-arrow-callback": 0,
+    "arrow-body-style": 0,
+    "consistent-return": 0,
+    "no-console": "error",
+    "no-use-before-define": [2, "nofunc"],
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-dynamic-require": 0,
+    "import/prefer-default-export": 0,
+    "import/order": 0,
+    "no-plusplus": 0,
+    "prefer-destructuring": 0,
+    "prefer-promise-reject-errors": 0,
+    "class-methods-use-this": 0,
+    "no-await-in-loop": 0,
+    "no-prototype-builtins": 0,
+    "no-restricted-syntax": 0,
+    "global-require": 0,
+    "lines-around-directive": 0,
+    "operator-assignment": 0,
+    "no-restricted-globals": 0,
+    "no-bitwise": 0,
+    "no-extra-boolean-cast": 0,
+    "no-control-regex": 0,
+    "camelcase": [
+      2,
+      {
+        "ignoreDestructuring": true,
+        "properties": "never"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
