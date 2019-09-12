@@ -25,7 +25,7 @@ const SignUpScreen = () => {
     }
   }, []);
   return isAuthenticated ? (
-    <Redirect to="/home" />
+    <Redirect to="/" />
   ) : (
     <SignupForm submit={signUp} isSubmitting={isUserLoading} />
   );

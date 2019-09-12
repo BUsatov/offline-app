@@ -43,7 +43,6 @@ export default function EventInfoForm({ values, handleOnChange }) {
         <Grid item xs={12} sm={6}>
           <TextField
             name="name"
-            required
             id="name"
             label="Name"
             fullWidth
@@ -56,7 +55,6 @@ export default function EventInfoForm({ values, handleOnChange }) {
         <Grid item xs={12} sm={6}>
           <TextField
             name="city"
-            required
             id="city"
             label="City"
             fullWidth

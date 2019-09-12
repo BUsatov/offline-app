@@ -111,7 +111,6 @@ const LoginForm = ({ submit, isSubmitting }) => {
             <TextField
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="email"
               label="Email Address"
@@ -126,7 +125,6 @@ const LoginForm = ({ submit, isSubmitting }) => {
             <TextField
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password"

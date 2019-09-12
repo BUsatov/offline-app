@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@material-ui/styles";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AuthProvider from "app/auth/auth-provider";
 import Auth from "app/auth/auth-context";
@@ -24,11 +24,11 @@ const App = () => (
               isAuthenticating ? (
                 <Loader />
               ) : (
-                <React.Fragment>
-                  <Route path="/login" component={LoginScreen} />
+                <Switch>
+                  <Route exact path="/login" component={LoginScreen} />
                   <Route path="/register" component={SignUpScreen} />
-                  <PrivateRoute path="/home" component={Authenticated} />
-                </React.Fragment>
+                  <PrivateRoute path="/" component={Authenticated} />
+                </Switch>
               )
             }
           </Auth.Consumer>

@@ -51,7 +51,7 @@ const Home = () => {
                 <Card className={classes.paper}>
                   <CardActionArea
                     component={AdapterLink}
-                    to={`/home/events?category=${value.id}`}
+                    to={`/events?category=${value.id}`}
                   >
                     <CardContent className={classes.cardContent}>
                       <value.icon fontSize="large" />
@@ -74,7 +74,7 @@ const Home = () => {
             color="primary"
             size="large"
             className={classes.button}
-            to="/home/new-event"
+            to="/new-event"
           >
             Create new event
             <AddIcon className={classes.rightIcon} />

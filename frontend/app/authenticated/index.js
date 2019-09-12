@@ -84,9 +84,9 @@ const Authenticated = () => {
       </AppBar>
       <Container maxWidth="lg" className={classes.container}>
         <ConfigContext>
-          <PrivateRoute exact path="/home/new-event" component={NewEvent} />
-          <PrivateRoute exact path="/home" component={Home} />
-          <PrivateRoute exact path="/home/events" component={Events} />
+          <PrivateRoute exact path="/new-event" component={NewEvent} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/events" component={Events} />
         </ConfigContext>
       </Container>
     </React.Fragment>

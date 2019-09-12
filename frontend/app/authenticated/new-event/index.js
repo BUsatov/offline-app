@@ -154,7 +154,7 @@ export default function NewEvent({ history }) {
 
   const handleSave = async values => {
     await save({ ...infoStep.state, ...values });
-    history.push("/home");
+    history.push("/");
   };
 
   const resourcesStep = useForm(

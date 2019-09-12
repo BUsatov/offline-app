@@ -81,7 +81,6 @@ export default function SignUp({ submit }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -94,7 +93,6 @@ export default function SignUp({ submit }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 name="password"
                 label="Password"
@@ -108,7 +106,6 @@ export default function SignUp({ submit }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 name="fullName"
                 label="Full Name"
@@ -120,7 +117,6 @@ export default function SignUp({ submit }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 name="city"
                 label="City"

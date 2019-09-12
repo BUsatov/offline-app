@@ -23,7 +23,7 @@ const LoginScreen = () => {
     }
   }, []);
   return isAuthenticated ? (
-    <Redirect to="/home" />
+    <Redirect to="/" />
   ) : (
     <LoginForm submit={login} isSubmitting={isUserLoading} />
   );
