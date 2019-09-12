@@ -22,8 +22,8 @@ const AuthProvider = ({ children }) => {
         axios.defaults.headers.common.Authorization = `Bearer ${
           (token || tokenObj).access_token
         }`;
-        const user = await axios("/api/v1/users/me");
-        setUser(user);
+        const userResp = await axios("/api/v1/users/me");
+        setUser(userResp.data);
         setAuthenticated(true);
       } catch (e) {
         axios.defaults.headers.common.Authorization = null;

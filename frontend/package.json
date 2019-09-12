@@ -19,6 +19,7 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "hooks": "^0.3.2",
+    "query-string": "^6.8.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-dropzone": "^10.1.5",

@@ -12,6 +12,7 @@
   "rules": {
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
+    "react/display-name": 0,
     "curly": ["error", "all"],
     "func-names": 0,
     "radix": 0,

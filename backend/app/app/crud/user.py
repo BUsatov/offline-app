@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.core.security import get_password_hash, verify_password
 from app.db_models.user import User
+from app.db_models.city import City
 from app.models.user import UserCreate, UserUpdate
 
 
@@ -38,11 +39,17 @@ def get_multi(db_session: Session, *, skip=0, limit=100) -> List[Optional[User]]
 
 
 def create(db_session: Session, *, user_in: UserCreate) -> User:
+    city = db_session.query(City).filter_by(name=user_in.city.lower()).first()
+    if not city:
+        city = City(name=user_in.city.lower())
+        db_session.add(city)
+        db_session.commit()
+        db_session.refresh(city)
     user = User(
         email=user_in.email,
         hashed_password=get_password_hash(user_in.password),
         full_name=user_in.full_name,
-        is_superuser=user_in.is_superuser,
+        city_id=city.id
     )
     db_session.add(user)
     db_session.commit()

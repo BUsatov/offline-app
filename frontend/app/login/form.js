@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Link as RouterLink } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,45 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-
-// const LoginForm = ({ submit, isSubmitting }) => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   return (
-//     <form
-//       onSubmit={e => {
-//         e.preventDefault();
-//         submit(email, password);
-//       }}
-//     >
-//       <Box>
-//         <Heading>Login</Heading>
-//         <FormField label="Email" error={undefined}>
-//           <TextInput
-//             value={email}
-//             onChange={event => setEmail(event.target.value)}
-//           />
-//         </FormField>
-//         <FormField label="Password">
-//           <TextInput
-//             type="password"
-//             value={password}
-//             onChange={event => setPassword(event.target.value)}
-//           />
-//         </FormField>
-//         <Box margin={{ vertical: "large" }} alignSelf="start">
-//           <Button type="submit" label="Login" primary disabled={isSubmitting} />
-//         </Box>
-//       </Box>
-//     </form>
-//   );
-// };
-// LoginForm.propTypes = {
-//   submit: PropTypes.func,
-//   isSubmitting: PropTypes.bool
-// };
-
-// export default LoginForm;
+import useForm from "app/hooks/useForm";
 
 function Copyright() {
   return (
@@ -95,10 +58,43 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const stateSchema = {
+  email: { value: "", error: "" },
+  password: { value: "", error: "" }
+};
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const validationStateSchema = {
+  email: {
+    required: true,
+    validators: [
+      {
+        rule: value => EMAIL_REGEX.test(value),
+        error: "Invalid email format."
+      }
+    ]
+  },
+  password: {
+    required: true,
+    validators: [
+      {
+        rule: value => value && value.length > 7,
+        error: "Password must be at least 8 symbols"
+      }
+    ]
+  }
+};
+
 const LoginForm = ({ submit, isSubmitting }) => {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  function onSubmitForm(state) {
+    submit(state.email.value, state.password.value);
+  }
+  const { state, handleOnChange, handleOnSubmit, disable } = useForm(
+    stateSchema,
+    validationStateSchema,
+    onSubmitForm
+  );
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -111,7 +107,7 @@ const LoginForm = ({ submit, isSubmitting }) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleOnSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -122,8 +118,10 @@ const LoginForm = ({ submit, isSubmitting }) => {
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={state.email.value}
+              helperText={state.email.error}
+              error={!!state.email.error}
+              onChange={handleOnChange}
             />
             <TextField
               variant="outlined"
@@ -135,8 +133,10 @@ const LoginForm = ({ submit, isSubmitting }) => {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              value={state.password.value}
+              helperText={state.password.error}
+              error={!!state.password.error}
+              onChange={handleOnChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -148,10 +148,7 @@ const LoginForm = ({ submit, isSubmitting }) => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={isSubmitting}
-              onClick={() => {
-                submit(email, password);
-              }}
+              disabled={disable || isSubmitting}
             >
               Sign In
             </Button>
@@ -162,7 +159,7 @@ const LoginForm = ({ submit, isSubmitting }) => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link component={RouterLink} to="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

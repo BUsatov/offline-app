@@ -34,8 +34,7 @@ def read_users(
 def create_user(
     *,
     db: Session = Depends(get_db),
-    user_in: UserCreate,
-    current_user: DBUser = Depends(get_current_active_superuser),
+    user_in: UserCreate
 ):
     """
     Create new user.
