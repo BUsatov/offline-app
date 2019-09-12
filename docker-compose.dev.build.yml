@@ -6,8 +6,6 @@ services:
       dockerfile: backend.dockerfile
       args:
         env: dev
-    stdin_open: true
-    tty: true
   celeryworker:
     build:
       context: ./backend
