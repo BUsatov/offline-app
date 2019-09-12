@@ -58,7 +58,7 @@ const Authenticated = () => {
           <Button size="small">my events</Button>
 
           <div className={classes.toolbarTitle}>
-            <Link to="/home">
+            <Link to="/">
               <img src={OfflinePic} height="40" />
             </Link>
           </div>
