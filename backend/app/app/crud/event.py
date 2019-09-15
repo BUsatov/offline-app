@@ -38,7 +38,7 @@ def create(db_session: Session, *, event_in: EventCreate, owner_id: int) -> Even
     event_in_data = jsonable_encoder(event_in)
     category = db_session.query(Category).filter(
         Category.name == event_in_data['category']['name']).first()
-    user_in_city = user_in.city.lower().strip()
+    user_in_city = event_in.city.lower().strip()
     city = db_session.query(City).filter_by(name=user_in_city).first()
     if not city:
         city = City(name=user_in_city)
