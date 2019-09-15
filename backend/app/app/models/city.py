@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 
 # Shared properties
@@ -22,6 +23,8 @@ class CityUpdate(CityBase):
 # Properties shared by models stored in DB
 class CityInDBBase(CityBase):
     id: int
+    created_at: datetime
+    updated_at: datetime
     name: str
 
 

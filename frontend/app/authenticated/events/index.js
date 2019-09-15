@@ -100,10 +100,12 @@ export default function Events({ location }) {
       {events.map(event => (
         <Grid item key={event.id} xs={12} md={4}>
           <EventItem
+            id={event.id}
             name={event.name}
             description={event.description}
-            createdAt={event.createdAt}
+            createdAt={event.created_at}
             category={event.category.name}
+            resources={event.resources}
           />
         </Grid>
       ))}

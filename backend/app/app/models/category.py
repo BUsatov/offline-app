@@ -1,7 +1,9 @@
 from pydantic import BaseModel
-
+from datetime import datetime
 
 # Shared properties
+
+
 class CategoryBase(BaseModel):
     name: str = None
 
@@ -22,6 +24,8 @@ class CategoryUpdate(CategoryBase):
 # Properties shared by models stored in DB
 class CategoryInDBBase(CategoryBase):
     id: int
+    created_at: datetime
+    updated_at: datetime
     name: str
 
 

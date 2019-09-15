@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
+import SvgIcon from "@material-ui/core/SvgIcon";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
@@ -17,12 +19,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Home from "./home";
 import NewEvent from "./new-event";
 import Events from "./events";
+import Event from "./event";
 import ConfigContext from "./config-context";
-import OfflinePic from "./offline.png";
+import OfflinePic from "./offline.svg";
 
 const useStyles = makeStyles(theme => ({
   appbar: {
-    backgroundColor: "#01c9ff"
+    backgroundColor: "#E83372"
   },
   toolbarTitle: {
     flex: 1,
@@ -38,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Authenticated = () => {
+const Authenticated = ({ history }) => {
   const classes = useStyles();
   const { logout } = useContext(Auth);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -55,11 +58,13 @@ const Authenticated = () => {
     <React.Fragment>
       <AppBar className={classes.appbar}>
         <Toolbar>
-          <Button size="small">my events</Button>
+          <IconButton size="small" onClick={() => history.goBack()}>
+            <ArrowBackIcon />
+          </IconButton>
 
           <div className={classes.toolbarTitle}>
             <Link to="/">
-              <img src={OfflinePic} height="40" />
+              <OfflinePic width="200" height="auto" viewBox="0 0 1200 210" />
             </Link>
           </div>
           <IconButton
@@ -87,6 +92,7 @@ const Authenticated = () => {
           <PrivateRoute exact path="/new-event" component={NewEvent} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/events" component={Events} />
+          <PrivateRoute exact path="/events/:id" component={Event} />
         </ConfigContext>
       </Container>
     </React.Fragment>

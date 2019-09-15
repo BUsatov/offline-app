@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 
 # Shared properties
@@ -17,6 +18,8 @@ class ResourceTypeCreate(ResourceTypeBase):
 # Properties shared by models stored in DB
 class ResourceTypeInDBBase(ResourceTypeBase):
     id: int
+    created_at: datetime
+    updated_at: datetime
     name: str
 
 

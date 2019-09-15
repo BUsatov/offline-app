@@ -1,20 +1,21 @@
-import LocalDiningIcon from "@material-ui/icons/LocalDining";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
-import BuildIcon from "@material-ui/icons/Build";
-import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
-import PaletteSharpIcon from "@material-ui/icons/PaletteSharp";
-import PetsSharpIcon from "@material-ui/icons/PetsSharp";
-import PanToolSharpIcon from "@material-ui/icons/PanToolSharp";
+import React from "react";
+import PetsIcon from "app/icons/pets.svg";
+import CookingIcon from "app/icons/cooking.svg";
+import HandcraftingIcon from "app/icons/handcrafting.svg";
+import SportsIcon from "app/icons/sport.svg";
+import WellnessIcon from "app/icons/wellness.svg";
+import GardeningIcon from "app/icons/gardening.svg";
+import FixingIcon from "app/icons/fixing.svg";
+import ArtsIcon from "app/icons/arts.svg";
 
 const CATEGORIES = {
-  cooking: { icon: LocalDiningIcon, label: "cooking" },
-  handcrafting: { icon: PanToolSharpIcon, label: "handcrafting" },
-  sport: { icon: DirectionsRunIcon, label: "fitness & sports" },
-  wellness: { icon: WbSunnyIcon, label: "wellness & beauty" },
-  gardening: { icon: LocalFloristIcon, label: "gardening" },
-  fixing: { icon: BuildIcon, label: "fixing" },
-  arts: { icon: PaletteSharpIcon, label: "arts" },
-  parenting: { icon: PetsSharpIcon, label: "parenting" }
+  cooking: { icon: <CookingIcon />, label: "cooking" },
+  handcrafting: { icon: <HandcraftingIcon />, label: "handcrafting" },
+  sport: { icon: <SportsIcon />, label: "fitness & sports" },
+  wellness: { icon: <WellnessIcon />, label: "wellness & beauty" },
+  gardening: { icon: <GardeningIcon />, label: "gardening" },
+  fixing: { icon: <FixingIcon />, label: "fixing" },
+  arts: { icon: <ArtsIcon />, label: "arts" },
+  parenting: { icon: <PetsIcon />, label: "pets" }
 };
 export default CATEGORIES;

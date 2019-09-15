@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[Event])
-def read_items(
+def read_events(
     db: Session = Depends(get_db),
     skip: int = 0,
     limit: int = 100,
@@ -28,6 +28,22 @@ def read_items(
     events = crud.event.get_multi(db, skip=skip, limit=limit, filter_by={
                                   'city_id': city_id, 'category_id': category_id})
     return events
+
+
+@router.get("/{id}", response_model=Event)
+def read_event(
+    *,
+    db: Session = Depends(get_db),
+    id: int,
+    current_user: DBUser = Depends(get_current_active_user),
+):
+    """
+    Get event by ID.
+    """
+    event = crud.event.get(db_session=db, id=id)
+    if not event:
+        raise HTTPException(status_code=400, detail="Event not found")
+    return event
 
 
 @router.post("/", response_model=Event)

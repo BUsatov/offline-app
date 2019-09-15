@@ -2,15 +2,13 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
+import SVGIconButton from "app/components/svg-icon-button";
+import ButtonRouter from "app/components/button-router";
 
 import { Context as ConfigContext } from "app/authenticated/config-context";
-import ButtonRouter from "app/components/button-router";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,6 +26,9 @@ const useStyles = makeStyles(theme => ({
   },
   rightIcon: {
     marginLeft: theme.spacing(1)
+  },
+  categoryButton: {
+    width: "100%"
   }
 }));
 
@@ -46,19 +47,15 @@ const Home = () => {
       <Grid container className={classes.root} justify="center" spacing={2}>
         <Grid item xs={12} md={10}>
           <Grid container justify="center" spacing={4}>
-            {categories.map(value => (
-              <Grid key={value.id} item xs={6} md={3}>
-                <Card className={classes.paper}>
-                  <CardActionArea
-                    component={AdapterLink}
-                    to={`/events?category=${value.id}`}
-                  >
-                    <CardContent className={classes.cardContent}>
-                      <value.icon fontSize="large" />
-                      <Typography variant="subtitle1">{value.label}</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+            {categories.map(category => (
+              <Grid key={category.id} item xs={6} md={3}>
+                <SVGIconButton
+                  component={AdapterLink}
+                  svg={category.icon}
+                  title={category.label}
+                  className={classes.categoryButton}
+                  to={`/events?category=${category.id}`}
+                />
               </Grid>
             ))}
           </Grid>

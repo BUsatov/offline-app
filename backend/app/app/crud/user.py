@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session
 from app.core.security import get_password_hash, verify_password
 from app.db_models.user import User
 from app.db_models.city import City
+from app.db_models.event import Event
+from app.db_models.resource import Resource
 from app.models.user import UserCreate, UserUpdate
 
 
@@ -32,6 +34,12 @@ def is_active(user) -> bool:
 
 def is_superuser(user) -> bool:
     return user.is_superuser
+
+
+def participate_in_event(db_session: Session, user: User, event_id: int) -> bool:
+    event_participants = db_session.query(Resource.assignee_id).filter(
+        Resource.event_id == event_id).all()
+    return bool([participant for participant in event_participants if participant[0] == user.id])
 
 
 def get_multi(db_session: Session, *, skip=0, limit=100) -> List[Optional[User]]:

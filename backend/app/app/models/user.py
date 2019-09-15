@@ -1,5 +1,5 @@
 from typing import Optional
-
+from datetime import datetime
 from pydantic import Schema, BaseModel, validator, EmailStr, SecretStr, Required
 
 from app.models.city import CityInDB
@@ -16,6 +16,8 @@ class UserBase(BaseModel):
 
 class UserBaseInDB(UserBase):
     id: int = None
+    created_at: datetime
+    updated_at: datetime
 
 
 # Properties to receive via API on creation
