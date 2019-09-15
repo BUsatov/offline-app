@@ -47,9 +47,10 @@ def get_multi(db_session: Session, *, skip=0, limit=100) -> List[Optional[User]]
 
 
 def create(db_session: Session, *, user_in: UserCreate) -> User:
-    city = db_session.query(City).filter_by(name=user_in.city.lower()).first()
+    user_in_city = user_in.city.lower().strip()
+    city = db_session.query(City).filter_by(name=user_in_city).first()
     if not city:
-        city = City(name=user_in.city.lower())
+        city = City(name=user_in_city)
         db_session.add(city)
         db_session.commit()
         db_session.refresh(city)

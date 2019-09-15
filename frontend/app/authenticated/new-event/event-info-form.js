@@ -17,7 +17,7 @@ const CATEGORIES = [
   { key: "gardening", label: "gardening" },
   { key: "fixing", label: "fixing" },
   { key: "arts", label: "arts" },
-  { key: "parenting", label: "parenting" }
+  { key: "parenting", label: "pets" }
 ];
 
 const useStyles = makeStyles(theme => ({

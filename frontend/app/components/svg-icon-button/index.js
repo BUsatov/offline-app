@@ -26,6 +26,7 @@ export default function SVGIconButton({ svg, title, ...props }) {
         variant="subtitle1"
         color="inherit"
         className={classes.imageTitle}
+        align="center"
       >
         {title}
       </Typography>

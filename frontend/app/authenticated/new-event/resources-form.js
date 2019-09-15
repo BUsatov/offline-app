@@ -35,7 +35,7 @@ export default function ResourcesForm({ values, handleOnChange }) {
           />
         </Grid>
         <Grid item xs={11}>
-          <Typography variant="h6">Location</Typography>
+          <Typography variant="h6">Venue</Typography>
           <Typography variant="caption" color="textSecondary">
             Please describe the desirable location for the activity
           </Typography>

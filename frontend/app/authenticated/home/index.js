@@ -46,7 +46,7 @@ const Home = () => {
       </Typography>
       <Grid container className={classes.root} justify="center" spacing={2}>
         <Grid item xs={12} md={10}>
-          <Grid container justify="center" spacing={4}>
+          <Grid container justify="center" spacing={2}>
             {categories.map(category => (
               <Grid key={category.id} item xs={6} md={3}>
                 <SVGIconButton
