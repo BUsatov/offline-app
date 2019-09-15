@@ -14,14 +14,8 @@ class UserBase(BaseModel):
         orm_mode = True
 
 
-class UserBaseInDB(UserBase):
-    id: int = None
-    created_at: datetime
-    updated_at: datetime
-
-
 # Properties to receive via API on creation
-class UserCreate(UserBaseInDB):
+class UserCreate(UserBase):
     email: EmailStr
     password: str = Schema(
         ...,
@@ -31,8 +25,14 @@ class UserCreate(UserBaseInDB):
 
 
 # Properties to receive via API on update
-class UserUpdate(UserBaseInDB):
+class UserUpdate(UserBase):
     password: Optional[str] = None
+
+
+class UserBaseInDB(UserBase):
+    id: int = None
+    created_at: datetime
+    updated_at: datetime
 
 
 # Additional properties to return via API
