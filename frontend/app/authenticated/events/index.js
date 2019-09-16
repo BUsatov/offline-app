@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,7 +12,7 @@ import queryString from "query-string";
 import AuthContext from "app/auth/auth-context";
 
 function useEventsData(category, city) {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const loadEvents = async () => {
     setLoading(true);
@@ -33,7 +33,7 @@ function useEventsData(category, city) {
 }
 
 function useAllCities() {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const loadCities = async () => {
     setLoading(true);
@@ -71,7 +71,7 @@ export default function Events({ location }) {
   const [city, selectCity] = useState(currentUser.city.id);
   const { events, loadingEvents } = useEventsData(category, city);
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} justify="center">
       <Grid item xs={12}>
         <FormControl className={classes.citySelect}>
           <InputLabel htmlFor="city">City</InputLabel>
@@ -109,6 +109,13 @@ export default function Events({ location }) {
           />
         </Grid>
       ))}
+      {!events.length && !loadingEvents && (
+        <Grid item key={event.id} xs={10} md={6}>
+          <Typography variant="h5" align="center" color="textSecondary">
+            Currently there are no events for selected category and city
+          </Typography>
+        </Grid>
+      )}
     </Grid>
   );
 }
