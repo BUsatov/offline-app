@@ -22,6 +22,7 @@ def init_db(db_session):
             email=config.FIRST_SUPERUSER,
             password=config.FIRST_SUPERUSER_PASSWORD,
             is_superuser=True,
+            city='kyiv'
         )
         user = crud.user.create(db_session, user_in=user_in)
     categories = crud.category.get_multi(db_session)
