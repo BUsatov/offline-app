@@ -17,7 +17,7 @@
     "@svgr/parcel-plugin-svgr": "^4.3.2",
     "app": "^0.1.0",
     "auth": "0.0.9",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "hooks": "^0.3.2",
     "query-string": "^6.8.3",
